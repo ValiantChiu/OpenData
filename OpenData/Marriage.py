@@ -3,7 +3,6 @@ import pandas as pd
 from os import listdir
 from os.path import isfile, join
 files = [f for f in listdir('Marriage') if isfile(join('Marriage', f))]
-
 #get total data
 def read_all_data(file_name):
     data = pd.read_csv('Marriage/'+file_name,encoding='utf-8')
@@ -34,11 +33,10 @@ else:
 
 #wilcoxon test
 from scipy.stats import wilcoxon
-data1 = old_data['count'].values
-data2 = new_data['count'].values
+old_102_103 = old_data['count'].values
+new_108_109 = new_data['count'].values
 stat, p = wilcoxon(data1, data2)
-print('stat=%.3f, p=%.3f' % (stat, p))
 if p > 0.05:
-	print('Probably the same distribution')
+	print('Same')
 else:
-	print('Probably different distributions')
+	print('Different')
